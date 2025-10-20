@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MMACHI PLATTER - Traditional cuisine, delightful food, and great service in Lagos. Reserve a table today!">
+  <title>MMACHI PLATTER</title>
+
+  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/vendors/animate/animate.css">
+
+  <link rel="stylesheet" href="assets/css/foodhut.css">
+
+  <style>
+    #message {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 15px;
+      background-color: #222;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: block;
+      max-width: 100%;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      min-height: 60px;
+      box-sizing: border-box;
+    }
+
+    #message.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .custom-navbar .brand-txt {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin-left: 1rem;
+    }
+
+    .btn-lg {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    footer.footer {
+      background: #111;
+      color: #aaa;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid #444;
+    }
+
+    .table th,
+    .table td {
+      vertical-align: middle !important;
+    }
+    .custom-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .custom-modal-overlay.show { display: flex; }
+    .custom-modal-box {
+      background: #111;
+      color: #eee;
+      width: 90%;
+      max-width: 520px;
+      padding: 24px;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid #D4AF37;
+    }
+    .custom-modal-close { position: absolute; top: 10px; right: 10px; }
+    .custom-modal-box h4 { color: #D4AF37; }
+    .custom-modal-box .list-group-item {
+      background: #1a1a1a;
+      color: #eee;
+      border-color: #333;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+  <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <span class="brand-txt">MMACHI PLATTER</span>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+           <li class="nav-item"><a class="nav-link" href="#book-a-table">Book A Table</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="header">
+    <div class="overlay text-white text-center">
+      <h1 class="display-2 font-weight-bold my-3">MMACHI PLATTER</h1>
+      <h2 class="display-4 mb-5">Always Fresh &amp; Delightful</h2>
+      <a class="btn btn-lg btn-primary" href="#gallery">View Our Gallery</a>
+    </div>
+  </header>
+
+<section id="book-a-table" class="container-fluid text-center text-light has-bg-overlay py-5">
+  <div class="container">
+    <h2 class="section-title mb-4">BOOK A TABLE</h2>
+    <p class="mb-5">Reserve your table now and enjoy a delightful dining experience at MMACHI PLATTER.</p>
+    
+    <form id="reservationForm" class="text-left bg-dark p-4 rounded shadow-lg">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-3">
+          <label for="email" class="form-label text-light">Email</label>
+          <input type="email" id="email" class="form-control form-control-lg" placeholder="example@mail.com" required>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <label for="guests" class="form-label text-light">Number of Guests</label>
+          <select id="guests" class="form-control form-control-lg" required>
+            <option value="">Select Guests</option>
+            <option value="2">2 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="8">8 Guests</option>
+            <option value="12">12 Guests</option>
+            <option value="14">14 Guests</option>
+            <option value="16">16 Guests</option>
+            <option value="18">18 Guests</option>
+          </select>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <label for="time" class="form-label text-light">Time</label>
+          <input type="time" id="time" class="form-control form-control-lg" required>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <label for="date" class="form-label text-light">Date</label>
+          <input type="date" id="date" class="form-control form-control-lg" required>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+        <button type="button" id="checkAvailabilityBtn" class="btn btn-info btn-lg mr-2">Check Availability</button>
+        <button type="submit" class="btn btn-outline-success btn-lg px-4">Book Table</button>
+      </div>
+
+      <div id="message" class="mt-4 text-light text-center"></div>
+    </form>
+
+    <div id="availabilityModal" class="custom-modal-overlay" aria-hidden="true">
+      <div class="custom-modal-box" role="dialog" aria-modal="true" aria-labelledby="availabilityTitle">
+        <button class="custom-modal-close btn btn-outline-light" onclick="closeAvailabilityModal()" aria-label="Close">×</button>
+        <h4 id="availabilityTitle" class="mb-3"> Tables Available</h4>
+        <p class="mb-4">These are the tables available for your selected date. If your preferred option is not listed, please try another time.</p>
+        <div id="availableTablesList"></div>
+        <div class="mt-3 text-right">
+          <button onclick="closeAvailabilityModal()" class="btn btn-outline-light">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+    
+ 
+  </section>
+
+  <section id="about" class="container-fluid wow fadeIn" data-wow-duration="1.5s">
+    <div class="row">
+      <div class="col-lg-6 has-img-bg"></div>
+      <div class="col-lg-6 py-5">
+        <div class="px-4">
+          <h2 class="mb-4">About Us</h2>
+          <p>At MMACHI PLATTER, our philosophy is built around one thing: "The Dare to Succeed". We are passionate about serving the highest quality traditional cuisine while growing a community of excellence and hospitality.</p>
+          <p>We offer a wide range of mouth-watering delicacies from our humble kitchen to your doorstep or dining table. Whether it's dine-in, takeaway, or event catering — we have you covered.</p>
+          <p>We also provide home services for small or large gatherings. Explore our menu, make a reservation, and enjoy a memorable food experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+
+ <section id="gallery" class="py-5" style="background-color: #000">
+  <div class="container">
+    <h2 class="text-center mb-4">Gallery</h2>
+     <div class="gallary row">
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 1.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 2.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 3.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 4.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 5.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 6.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+         <img src="assets/images/gallary 7.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 8.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 9.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 10.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 11.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="assets/images/gallary 12.jpg" alt="template by Treasure" class="gallary-img">
+            <a href="javascript:void(0)" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+    </div>
+
+  <section id="testimonials" class="container-fluid bg-dark text-light py-5 wow fadeIn">
+    <div class="container text-center">
+      <h2 class="section-title mb-4">REVIEWS</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card bg-secondary h-100 p-4">
+            <h4 class="text-white">Ola</h4>
+            <p class="text-light">The food tastes nice and the services here are top notch.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card bg-secondary h-100 p-4">
+            <h4 class="text-white">David</h4>
+            <p class="text-light">I love the food and services offered.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card bg-secondary h-100 p-4">
+            <h4 class="text-white">Joy</h4>
+            <p class="text-light">Looking for a meal you never have to regret having? Try MMACHI PLATTER!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container-fluid bg-dark text-light border-top py-5 wow fadeIn">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <iframe src="https://www.google.com/maps?q=9.0338725,8.677457&z=15&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+          <h3 class="mb-3">Find Us</h3>
+          <p><span class="ti-location-pin pr-2"></span>No 10 Rabiatu street, Off Sunday Aghedo, Ago Palace Way, Okota, Lagos</p>
+          <p><span class="ti-support pr-2"></span>+234 803 393 4562</p>
+          <p><span class="ti-email pr-2"></span>micdor2017@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2023 Treasure Jachike | Built with <span style="color: red;">&hearts;</span></p>
+  </footer>
+
+  <script src="assets/vendors/wow/wow.js"></script>
+  <script src="assets/js/foodhut.js"></script>
+ <script>
+
+
+let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
+
+(function autoResetDaily() {
+  const today = new Date().toISOString().split('T')[0];
+  const lastReservationDate = localStorage.getItem('lastReservationDate');
+  if (lastReservationDate !== today) {
+    reservations = [];
+    localStorage.removeItem('reservations');
+    localStorage.setItem('lastReservationDate', today);
+  }
+})();
+
+removeExpiredReservations();
+
+function removeExpiredReservations() {
+  const now = Date.now();
+  const THIRTY_MINUTES = 30 * 60 * 1000;
+  const validReservations = reservations.filter(r => now - (r.timestamp || 0) < THIRTY_MINUTES);
+  
+
+  if (validReservations.length !== reservations.length) {
+    reservations = validReservations;
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+  }
+}
+
+function maskEmail(email) {
+  const [name, domain] = email.split("@");
+  if (!domain) return email;
+  if (name.length <= 2) return "*".repeat(name.length) + "@" + domain;
+  const visibleChars = name.slice(0, 1);
+  const masked = "*".repeat(name.length - 2);
+  const lastChar = name.slice(-1);
+  return visibleChars + masked + lastChar + "@" + domain;
+}
+
+
+
+function getBookedTableSizes() {
+  const sizes = new Set();
+  reservations.forEach(r => {
+    const size = parseInt(r.guests, 10);
+    if ([2,4,6,8,12,14,16,18].includes(size)) sizes.add(size);
+  });
+  return sizes;
+}
+
+function openAvailabilityModal() {
+  removeExpiredReservations(); // ensure fresh
+  const modal = document.getElementById('availabilityModal');
+  const listDiv = document.getElementById('availableTablesList');
+  if (!modal || !listDiv) return;
+
+  const bookedSizes = getBookedTableSizes();
+  const tableSizes = [2,4,6,8,12,14,16,18];
+  let html = '<ul class="list-group">';
+  tableSizes.forEach(size => {
+    const isBooked = bookedSizes.has(size);
+    html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+               Table for ${size}
+               <span class="${isBooked ? 'badge bg-danger' : 'badge bg-success'}">
+                 ${isBooked ? 'Booked' : 'Available'}
+               </span>
+            </li>`;
+  });
+  html += '</ul>';
+  listDiv.innerHTML = html;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+function closeAvailabilityModal() {
+  const modal = document.getElementById('availabilityModal');
+  if (modal) {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const checkBtn = document.getElementById('checkAvailabilityBtn');
+  if (checkBtn) checkBtn.addEventListener('click', openAvailabilityModal);
+
+  const overlay = document.getElementById('availabilityModal');
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeAvailabilityModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAvailabilityModal();
+  });
+});
+
+document.getElementById('reservationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  const guests = document.getElementById('guests').value;
+  const time = document.getElementById('time').value;
+  const date = document.getElementById('date').value;
+
+  const messageBox = document.getElementById('message');
+  const successSound = document.getElementById('successSound');
+  const errorSound = document.getElementById('errorSound');
+
+  if (!messageBox) return;
+
+  if (messageBox.hideTimeout) {
+    clearTimeout(messageBox.hideTimeout);
+    delete messageBox.hideTimeout;
+  }
+  if (messageBox.hideTimeout2) {
+    clearTimeout(messageBox.hideTimeout2);
+    delete messageBox.hideTimeout2;
+  }
+
+  const bookedSizes = getBookedTableSizes();
+  const selectedGuests = parseInt(guests, 10);
+  const isAvailable = !bookedSizes.has(selectedGuests);
+
+  messageBox.classList.remove('show');
+  setTimeout(() => {
+    if (isAvailable) {
+      messageBox.style.color = 'lightgreen';
+      messageBox.textContent = ` Table booked successfully for ${email} on ${date} at ${time} for ${guests} guests.`;
+      if (successSound) try { successSound.play(); } catch(e){}
+      const newReservation = { email, guests, date, time, timestamp: Date.now() };
+      reservations.push(newReservation);
+      localStorage.setItem('reservations', JSON.stringify(reservations));
+      
+      const modal = document.getElementById('availabilityModal');
+      if (modal && modal.classList.contains('show')) {
+        openAvailabilityModal();
+      }
+      
+      document.getElementById('reservationForm').reset();
+    } else {
+      messageBox.style.color = 'salmon';
+      messageBox.textContent = ' Sorry, no tables available at the selected time.';
+      if (errorSound) try { errorSound.play(); } catch(e){}
+    }
+    messageBox.classList.add('show');
+  }, 10);
+
+  messageBox.hideTimeout = setTimeout(() => {
+    messageBox.classList.remove('show');
+ 
+    messageBox.hideTimeout2 = setTimeout(() => {
+      messageBox.textContent = '';
+      delete messageBox.hideTimeout;
+      delete messageBox.hideTimeout2;
+    }, 300);
+  }, 5000);
+});
+
+setInterval(removeExpiredReservations, 60000);
+</script>
+
+<audio id="successSound" preload="auto"></audio>
+<audio id="errorSound" preload="auto"></audio>
+
+
+
